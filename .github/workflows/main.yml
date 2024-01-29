@@ -4,7 +4,7 @@ on:
     - main
 jobs:
   test:
-    name: Tesr
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -14,6 +14,6 @@ jobs:
       with:
         node-version: ${{ matrix.node_version }}
 
-    - name: run tests
+    - name: Run tests
       run: |
         dotnet test
