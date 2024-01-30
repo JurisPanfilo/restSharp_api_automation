@@ -1,19 +1,29 @@
+name: API Tests
+
 on:
   push:
     branches:
-    - main
+      - main  # Adjust the branch as needed
+  workflow_dispatch:  # Manual trigger
+
 jobs:
   test:
-    name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Choose an appropriate runner
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node_version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node_version }}
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Run tests
-      run: |
-        dotnet test
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '3.1'  # Adjust to the version you need
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Run API Tests
+      run: dotnet test --configuration Release
