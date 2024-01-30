@@ -1,3 +1,4 @@
+using System.Net;
 using ApiTestAautomation_2.DTO;
 using ApiTestAautomation_2.Helpers;
 using Newtonsoft.Json;
@@ -28,25 +29,29 @@ public class Tests
     public void PlaceNewOrder()
     {
         
-        // var client = new RestClient("https://valentinos-coffee.herokuapp.com");
-        // var restRequest = new RestRequest("/orders", Method.Post);
-        // var body = new CreateNewOrderRequest
-        // {
-        //     customerName = randomEmail, products =
-        //     [
-        //         new Products { id = 1001, quantity = 2 }
-        //     ]
-        // };
-        // restRequest.AddHeader("x-api-Key", token);
-        // restRequest.AddJsonBody(body);
-        //
-        //
-        // var response = client.Execute(restRequest);
-
-
-        RestResponse resp = request.AddOrder(token, randomEmail, 1002, 2);
-        
+        RestResponse resp = request.AddOrder(token, "dewitt@olson.info", 1002, 2);
         var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        
+        Console.WriteLine(JObject.Parse(resp.Content));
+        
+        
+        // Assuming you have deserialized the response into a variable named 'responseContent'
+        Assert.That(responseContent, Is.Not.Null, "Response should not be null");
+
+        Assert.That(responseContent.id, Does.Match(@"^[A-Z0-9-]+$"), "Id should match the expected format");
+        Assert.That(responseContent.clientId, Does.Match(@"^[A-Za-z0-9-_]+$"), "ClientId should match the expected format");
+
+
+        Assert.That(responseContent.customerName, Is.Not.Null.Or.Empty, "CustomerName should not be null or empty");
+        Assert.That(responseContent.products, Is.InstanceOf<ProductsList[]>(), "Products should be an array of ProductsList");
+
+        // Additional assertions for each item in the array
+        foreach (var product in responseContent.products)
+        {
+            Assert.That(product.id, Is.GreaterThan(0), "Product ID should be greater than 0");
+            Assert.That(product.quantity, Is.GreaterThanOrEqualTo(0), "Product quantity should be greater than or equal to 0");
+            // Add more assertions as needed based on your requirements for each product
+        }
         
         Console.Write(resp.StatusCode);
         Console.WriteLine(responseContent.customerName);
@@ -54,7 +59,5 @@ public class Tests
         Console.WriteLine(responseContent.products[0].id);
         Console.WriteLine(responseContent.products.Length);
         Console.WriteLine(JObject.Parse(resp.Content));
-        
-        
     }
 }
