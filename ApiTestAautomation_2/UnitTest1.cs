@@ -29,7 +29,7 @@ public class Tests
     public void PlaceNewOrder()
     {
         
-        RestResponse resp = request.AddOrder(token, "dewitt@olson.info", 1002, 2);
+        RestResponse resp = request.AddOrder(token, randomEmail, 1002, 2);
         var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
         
         // Assuming you have deserialized the response into a variable named 'responseContent'
@@ -56,5 +56,25 @@ public class Tests
         Console.WriteLine(responseContent.products[0].id);
         Console.WriteLine(responseContent.products.Length);
         Console.WriteLine(JObject.Parse(resp.Content));
+    }
+
+    [Test]
+    public void NewOrderMissingCustomerName()
+    {
+        RestResponse resp = request.AddOrder(token, "", 1002, 2);
+        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        
+        Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
+        Assert.That(responseContent.error, Is.EqualTo("Customer name is required"));
+    }
+    
+    [Test]
+    public void NewOrderInvalidProductId()
+    {
+        RestResponse resp = request.AddOrder(token, randomEmail, 1, 2);
+        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        
+        Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
+        Assert.That(responseContent.error, Is.EqualTo("Invalid, unavailable, or zero-quantity products found"));
     }
 }
