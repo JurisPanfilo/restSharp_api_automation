@@ -23,5 +23,5 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release
 
-    - name: Run API Tests with NUnit Console and JUnit XML reporters
-      run: dotnet test --configuration Release --logger "console;verbosity=normal" --logger "nunit" --results-directory TestResults
+    - name: Run API Tests
+      run: dotnet test --configuration Release
