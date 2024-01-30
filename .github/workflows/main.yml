@@ -24,7 +24,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Run API Tests
-        run: >
+      run: >
           dotnet test
           --configuration Release
           --logger "GitHubActions;summary.includePassedTests=true;summary.includeSkippedTests=true"
