@@ -14,6 +14,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Install .NET
+      uses: actions/setup-dotnet@v4
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
 
