@@ -50,12 +50,12 @@ public class Tests
             // Add more assertions as needed based on your requirements for each product
         }
         
-        Console.Write(resp.StatusCode);
-        Console.WriteLine(responseContent.customerName);
-        Console.WriteLine(responseContent.clientId);
-        Console.WriteLine(responseContent.products[0].id);
-        Console.WriteLine(responseContent.products.Length);
-        Console.WriteLine(JObject.Parse(resp.Content));
+        // Console.Write(resp.StatusCode);
+        // Console.WriteLine(responseContent.customerName);
+        // Console.WriteLine(responseContent.clientId);
+        // Console.WriteLine(responseContent.products[0].id);
+        // Console.WriteLine(responseContent.products.Length);
+        // Console.WriteLine(JObject.Parse(resp.Content));
     }
 
     [Test]
@@ -68,10 +68,24 @@ public class Tests
         Assert.That(responseContent.error, Is.EqualTo("Customer name is required"));
     }
     
-    [Test]
-    public void NewOrderInvalidProductId()
+    [TestCase(1001)]
+    [TestCase(4000)]
+    [TestCase(-1001)]
+    [TestCase(0)]
+    public void NewOrderInvalidProductId(int orderNumber)
     {
-        RestResponse resp = request.AddOrder(token, randomEmail, 1, 2);
+        var resp = request.AddOrder(token, randomEmail, 9005, 1);
+        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        
+        Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
+        Assert.That(responseContent.error, Is.EqualTo("Invalid, unavailable, or zero-quantity products found"));
+    }
+    
+    [TestCase(-1)]
+    [TestCase(0)]
+    public void NewOrderInvalidQuantity(int quantity)
+    {
+        RestResponse resp = request.AddOrder(token, randomEmail, 1001, quantity);
         var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
         
         Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
