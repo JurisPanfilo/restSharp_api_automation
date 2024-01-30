@@ -12,8 +12,8 @@ public class Tests
 {
     RequestsClass request = new RequestsClass();
 
-    private String token;
-    private String randomEmail;
+    private string token;
+    private string randomEmail;
     
     [SetUp]
     public void Setup()
@@ -29,10 +29,9 @@ public class Tests
     public void PlaceNewOrder()
     {
         
-        RestResponse resp = request.AddOrder(token, randomEmail, 1002, 2);
-        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        var response = request.AddOrder(token, randomEmail, 1002, 2);
+        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(response.Content);
         
-        // Assuming you have deserialized the response into a variable named 'responseContent'
         Assert.That(responseContent, Is.Not.Null, "Response should not be null");
 
         Assert.That(responseContent.clientId, Is.Not.Null.Or.Empty, "clientId should not be null or empty");
@@ -47,7 +46,6 @@ public class Tests
         {
             Assert.That(product.id, Is.GreaterThan(0), "Product ID should be greater than 0");
             Assert.That(product.quantity, Is.GreaterThanOrEqualTo(0), "Product quantity should be greater than or equal to 0");
-            // Add more assertions as needed based on your requirements for each product
         }
         
         // Console.Write(resp.StatusCode);
@@ -61,12 +59,13 @@ public class Tests
     [Test]
     public void NewOrderMissingCustomerName()
     {
-        RestResponse resp = request.AddOrder(token, "", 1002, 2);
-        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        var response = request.AddOrder(token, "", 1002, 2);
+        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(response.Content);
         
-        Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
         Assert.That(responseContent.error, Is.EqualTo("Customer name is required"));
     }
+    
     
     [TestCase(1001)]
     [TestCase(4000)]
@@ -74,10 +73,10 @@ public class Tests
     [TestCase(0)]
     public void NewOrderInvalidProductId(int orderNumber)
     {
-        var resp = request.AddOrder(token, randomEmail, 9005, 1);
-        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        var response = request.AddOrder(token, randomEmail, 9005, 1);
+        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(response.Content);
         
-        Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
         Assert.That(responseContent.error, Is.EqualTo("Invalid, unavailable, or zero-quantity products found"));
     }
     
@@ -85,10 +84,10 @@ public class Tests
     [TestCase(0)]
     public void NewOrderInvalidQuantity(int quantity)
     {
-        RestResponse resp = request.AddOrder(token, randomEmail, 1001, quantity);
-        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
+        var response = request.AddOrder(token, randomEmail, 1001, quantity);
+        var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(response.Content);
         
-        Assert.That(resp.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest), "Incorrect Status Code");
         Assert.That(responseContent.error, Is.EqualTo("Invalid, unavailable, or zero-quantity products found"));
     }
 }
