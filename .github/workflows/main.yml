@@ -24,4 +24,4 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: Run API Tests
-      run: dotnet test --configuration Release
+      run: dotnet test --configuration Release --logger "console;verbosity=detailed"
