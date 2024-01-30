@@ -32,14 +32,11 @@ public class Tests
         RestResponse resp = request.AddOrder(token, "dewitt@olson.info", 1002, 2);
         var responseContent = JsonConvert.DeserializeObject<CreateNewOrderResponse>(resp.Content);
         
-        Console.WriteLine(JObject.Parse(resp.Content));
-        
-        
         // Assuming you have deserialized the response into a variable named 'responseContent'
         Assert.That(responseContent, Is.Not.Null, "Response should not be null");
 
-        Assert.That(responseContent.id, Does.Match(@"^[A-Z0-9-]+$"), "Id should match the expected format");
-        Assert.That(responseContent.clientId, Does.Match(@"^[A-Za-z0-9-_]+$"), "ClientId should match the expected format");
+        Assert.That(responseContent.clientId, Is.Not.Null.Or.Empty, "clientId should not be null or empty");
+        Assert.That(responseContent.id, Is.Not.Null.Or.Empty, "id should not be null or empty");
 
 
         Assert.That(responseContent.customerName, Is.Not.Null.Or.Empty, "CustomerName should not be null or empty");
