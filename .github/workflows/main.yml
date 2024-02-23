@@ -33,7 +33,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: allure-results
-        path: allure-results
+        path: /github/workspace/bin/Debug/net8.0
     - name: Load test report history
       uses: actions/checkout@v3
       if: always()
