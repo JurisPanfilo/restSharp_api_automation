@@ -21,7 +21,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release
+      run: dotnet build
 
     - name: Run API Tests
       run: dotnet test --configuration Release --logger "console;verbosity=detailed;colored=true"
