@@ -24,7 +24,7 @@ jobs:
       run: dotnet build
 
     - name: Run API Tests
-      run: dotnet test --configuration Release --logger "console;verbosity=detailed;colored=true"
+      run: dotnet test
     - name: List files in Debug folder
       run: |
         ls -al $GITHUB_WORKSPACE/bin/Debug/net8.0
