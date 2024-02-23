@@ -1,11 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0378c3f9_002D2062_002D460c_002Dad41_002D0f04274a958a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PlaceNewOrder" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0378c3f9_002D2062_002D460c_002Dad41_002D0f04274a958a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PlaceNewOrder" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests.PlaceNewOrder&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests.PostmanNewOrder&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests.NewOrderMissingCustomerName&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests.NewOrderInvalidProductId&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests.NewOrderInvalidQuantity&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4203ceb6_002De35e_002D4faf_002D9a84_002D5181de759edd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetAllOrders #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests.GetAllOrders&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=83d47e81_002D75d1_002D441f_002Dacdb_002D0432b0394489/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetAllOrders" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::83F485B9-E1ED-4C83-8413-32E264E293B7::net8.0::ApiTestAautomation_2.Tests.GetAllOrders&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -23,13 +23,10 @@ public class RequestsClass
         
         var client = new RestClient("https://valentinos-coffee.herokuapp.com");
         var restRequest = new RestRequest("/orders", Method.Post);
-        var body = new CreateNewOrderRequest
-        {
-            customerName = customerName, products =
-            [
-                new Products { id = orderNumber, quantity = quantity }
-            ]
-        };
+        var body = new CreateNewOrderRequest();
+        body.customerName = customerName;
+        body.products = [new Products { id = orderNumber, quantity = quantity }];
+        
         restRequest.AddHeader("x-api-Key", token);
         restRequest.AddJsonBody(body);
         
@@ -37,6 +34,18 @@ public class RequestsClass
         var resrResponse = client.Execute(restRequest);
 
         return resrResponse;
+    }
+
+    public RestResponse GetAllOrders(string token)
+    {
+        var client = new RestClient("https://valentinos-coffee.herokuapp.com");
+        var restRequest = new RestRequest("/orders");
+        restRequest.AddHeader("x-api-key", token);
+
+        var restResponse = client.Execute(restRequest);
+
+        return restResponse;
+
     }
     
 }
