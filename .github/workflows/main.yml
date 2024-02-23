@@ -3,12 +3,12 @@ name: API Tests
 on:
   push:
     branches:
-      - main  # Adjust the branch as needed
-  workflow_dispatch:  # Manual trigger
+      - main
+  workflow_dispatch:
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Choose an appropriate runner
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -18,19 +18,26 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
           dotnet-version: 8.0.x
+    
+    - name: Restore dependencies  # Add this step
+      run: dotnet restore
+
     - run: dotnet build
 
     - name: Run API Tests
       run: dotnet test
+
     - name: List files in Debug folder
       run: |
         ls -al $GITHUB_WORKSPACE/bin/Debug/net8.0/allure-results
+    
     - name: Upload Allure results
       if: always()
       uses: actions/upload-artifact@v3
       with:
         name: allure-results
         path: bin/Debug/net8.0/allure-results
+
     - name: Load test report history
       uses: actions/checkout@v3
       if: always()
@@ -38,6 +45,7 @@ jobs:
       with:
         ref: gh-pages
         path: gh-pages
+
     - name: Build test report
       uses: simple-elf/allure-report-action@v1.7
       if: always()
