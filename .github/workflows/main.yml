@@ -27,7 +27,7 @@ jobs:
       run: dotnet test --configuration Release --logger "console;verbosity=detailed;colored=true"
     - name: List files in Debug folder
       run: |
-        ls -al $GITHUB_WORKSPACE
+        ls -al $GITHUB_WORKSPACE/bin
     - name: Upload Allure results
       if: always()
       uses: actions/upload-artifact@v3
