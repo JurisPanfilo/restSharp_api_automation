@@ -25,6 +25,9 @@ jobs:
 
     - name: Run API Tests
       run: dotnet test --configuration Release --logger "console;verbosity=detailed;colored=true"
+    - name: List files in parent directory
+      run: |
+        ls -al ..
     - name: Upload Allure results
       if: always()
       uses: actions/upload-artifact@v3
