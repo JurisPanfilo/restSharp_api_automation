@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTestAautomation_2", "ApiTestAautomation_2\ApiTestAautomation_2.csproj", "{83F485B9-E1ED-4C83-8413-32E264E293B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTestAautomation_2", "ApiTestAautomation_2.csproj", "{83F485B9-E1ED-4C83-8413-32E264E293B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
