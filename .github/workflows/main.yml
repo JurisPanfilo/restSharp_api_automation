@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: allure-results
-        path: bin/Debug/net8.0/allure-results
+        path: allure-results
 
     - name: Load test report history
       uses: actions/checkout@v3
